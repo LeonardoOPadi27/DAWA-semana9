@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 interface SearchMoviesProps {
@@ -141,15 +142,20 @@ export default function SearchMovies({ apiKey }: SearchMoviesProps) {
             </button>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <img
-                src={
-                  selectedMovie.Poster !== 'N/A'
-                    ? selectedMovie.Poster
-                    : '/next.svg'
-                }
-                alt={selectedMovie.Title}
-                className="w-full rounded-lg"
-              />
+              {selectedMovie.Poster !== 'N/A' ? (
+                <Image
+                  src={selectedMovie.Poster}
+                  alt={selectedMovie.Title}
+                  width={300}
+                  height={450}
+                  className="w-full rounded-lg"
+                  unoptimized
+                />
+              ) : (
+                <div className="w-full bg-gray-300 h-64 flex items-center justify-center rounded-lg">
+                  <span className="text-gray-600">Sin imagen disponible</span>
+                </div>
+              )}
 
               <div>
                 <h3 className="text-3xl font-bold text-gray-800 mb-2">
