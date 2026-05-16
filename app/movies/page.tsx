@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import SearchMovies from './SearchMovies'
 
 const API_KEY = process.env.NEXT_PUBLIC_OMDB_API_KEY || ''
@@ -51,20 +50,12 @@ export default async function MoviesPage() {
               key={movie.imdbID}
               className="bg-white rounded-xl shadow-xl overflow-hidden"
             >
-              {movie.Poster !== 'N/A' ? (
-                <Image
-                  src={movie.Poster}
-                  alt={movie.Title}
-                  width={300}
-                  height={450}
-                  className="w-full h-96 object-cover"
-                  unoptimized
-                />
-              ) : (
-                <div className="w-full h-96 bg-gray-300 flex items-center justify-center">
-                  <span className="text-gray-600">Sin imagen</span>
-                </div>
-              )}
+              <img
+                src={movie.Poster !== 'N/A' ? movie.Poster : '/next.svg'}
+                alt={movie.Title}
+                className="w-full h-96 object-cover bg-gray-300"
+                loading="lazy"
+              />
 
               <div className="p-4">
                 <h3 className="font-bold text-lg text-gray-800">
