@@ -1,6 +1,6 @@
 import SearchMovies from './SearchMovies'
 
-const API_KEY = 'fb3f510c'
+const API_KEY = process.env.NEXT_PUBLIC_OMDB_API_KEY || ''
 
 interface Movie {
   imdbID: string
